@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1000
   skip: True  # [win and vc<14]
   {% if 'toolchain' in compiler('cxx') %}skip: True{% endif %}  # Only build with modern compilers.
 
