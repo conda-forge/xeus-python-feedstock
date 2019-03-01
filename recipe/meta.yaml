@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.1.4" %}
-{% set sha256 = "c5f2ed0db5b104a0bea2df850053bafb90980cb083aac07752d9f8ec2941bb5c" %}
+{% set version = "0.1.5" %}
+{% set sha256 = "601de226de0dfe0228afb400db364f4be57ec95b4b6a1a32452c48bdb3db8d96" %}
 
 package:
   name: {{ name|lower }}
@@ -14,7 +14,6 @@ source:
 build:
   number: 0
   skip: True  # [win and vc<14]
-  {% if 'toolchain' in compiler('cxx') %}skip: True{% endif %}  # Only build with modern compilers.
 
 requirements:
   build:
