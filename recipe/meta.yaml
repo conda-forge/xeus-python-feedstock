@@ -10,9 +10,11 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/QuantStack/xeus-python/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - 0001-print-home.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -48,6 +50,7 @@ test:
     - if exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfig.cmake (exit 0) else (exit 1)         # [win]
     - if exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfigVersion.cmake (exit 0) else (exit 1)  # [win]
     - if exist %LIBRARY_PREFIX%\\..\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 0) else (exit 1)            # [win]
+    - ${PREFIX}/bin/xpython      #[unix]
 
 about:
   home: http://quantstack.net/xeus-python

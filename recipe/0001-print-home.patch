@@ -1,0 +1,29 @@
+diff --git a/src/main.cpp b/src/main.cpp
+index ed34b10..a5324d4 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -44,11 +44,23 @@ std::string extract_filename(int& argc, char* argv[])
+     return res;
+ }
+ 
++void print_python_home()
++{
++    wchar_t* ph = Py_GetPythonHome();
++    char mbstr[1024];
++    std::wcstombs(mbstr, ph, 1024);
++    std::clog << mbstr << std::endl;
++}
++
+ int main(int argc, char* argv[])
+ {
+     std::string file_name = extract_filename(argc, argv);
+-
++    std::setlocale(LC_ALL, "en_US.utf8");
+     xpyt::set_pythonhome();
++    std::clog << "PYTHONHOME after setting it: ";
++    print_python_home();
++    return 0;
++
+     py::scoped_interpreter guard;
+     using interpreter_ptr = std::unique_ptr<xpyt::interpreter>;
+     interpreter_ptr interpreter = interpreter_ptr(new xpyt::interpreter(argc, argv));
