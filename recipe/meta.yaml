@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.3.1" %}
-{% set sha256 = "2794c82ee7f088c7c28c109ebdf73365cd91127aa9469d1c7e7ac4ac4393c558" %}
+{% set version = "0.3.2" %}
+{% set sha256 = "2621d3dfd5e1d55ad8c711c79664607326f2cdd3f4be51eda43263b7eb2cc7a2" %}
 
 package:
   name: {{ name|lower }}
@@ -10,11 +10,9 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/QuantStack/xeus-python/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - 0001-pythonhome.patch
 
 build:
-  number: 2
+  number: 0
   skip: True  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
