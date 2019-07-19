@@ -1,0 +1,15 @@
+diff --git a/include/xeus-python/xpythonhome.hpp b/include/xeus-python/xpythonhome.hpp
+index 80074fa..c4e321b 100644
+--- a/include/xeus-python/xpythonhome.hpp
++++ b/include/xeus-python/xpythonhome.hpp
+@@ -27,8 +27,8 @@ namespace xpyt
+         // but wide string literals are not properly relocated by the conda package
+         // manager.
+         static const char* ph = XEUS_PYTHON_HOME;
+-        static const std::wstring wstr(ph, ph + std::strlen(ph));;
+-        Py_SetPythonHome(const_cast<wchar_t*>(wstr.c_str()));
++        static std::vector<wchar_t> wstr(ph, ph + std::strlen(ph));
++        Py_SetPythonHome(wstr.data());
+ #endif
+ #endif
+     }
