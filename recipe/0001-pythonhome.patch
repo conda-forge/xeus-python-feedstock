@@ -1,15 +1,136 @@
+diff --git a/.travis.yml b/.travis.yml
+index 73321e4..6ac6e21 100644
+--- a/.travis.yml
++++ b/.travis.yml
+@@ -64,7 +64,7 @@ install:
+     # Build and install xeus-python
+     - mkdir build
+     - cd build
+-    - cmake -D CMAKE_INSTALL_PREFIX=$HOME/miniconda -D DOWNLOAD_GTEST=ON -D PYTHON_EXECUTABLE=`which python` -D XEUS_PYTHON_HOME="$HOME/miniconda" -D CMAKE_INSTALL_LIBDIR=lib -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX ..
++    - cmake -D CMAKE_INSTALL_PREFIX=$HOME/miniconda -D DOWNLOAD_GTEST=ON -D PYTHON_EXECUTABLE=`which python` -D XEUS_PYTHONHOME="$HOME/miniconda" -D CMAKE_INSTALL_LIBDIR=lib -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX ..
+     - make -j2 install
+ script:
+     # For Python 2, activate the kernel_test Python3 environment
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index df61f63..c77d7f5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -102,6 +102,7 @@ set(XEUS_PYTHON_SRC
+     src/xis_complete.hpp
+     src/xptvsd_client.cpp
+     src/xptvsd_client.hpp
++    src/xpythonhome.cpp
+     src/xstream.cpp
+     src/xstream.hpp
+     src/xtraceback.cpp
+@@ -123,7 +124,6 @@ add_library(xeus-python SHARED ${XEUS_PYTHON_SRC} ${XEUS_PYTHON_HEADERS})
+ add_executable(xpython src/main.cpp)
+ set_target_properties(xpython PROPERTIES ENABLE_EXPORTS 1)
+ target_link_libraries(xpython PRIVATE pybind11::pybind11 xeus-python)
+-target_compile_definitions(xpython PRIVATE XEUS_PYTHON_HOME="${PYTHON_PREFIX}")
+ 
+ if (APPLE)
+     set_target_properties(xpython xeus-python PROPERTIES
+@@ -149,12 +149,13 @@ target_link_libraries(xeus-python PUBLIC pybind11::embed xeus)
+ 
+ set_target_properties(xeus-python PROPERTIES
+                       PUBLIC_HEADER "${XEUS_PYTHON_HEADERS}"
+-                      COMPILE_DEFINITIONS "XEUS_PYTHON_EXPORTS"
+                       PREFIX ""
+                       VERSION ${${PROJECT_NAME}_VERSION}
+                       SOVERSION ${XPYT_VERSION_MAJOR}
+                       OUTPUT_NAME "libxeus-python")
+ 
++target_compile_definitions(xeus-python PUBLIC "XEUS_PYTHON_EXPORTS" XEUS_PYTHONHOME="${PYTHON_PREFIX}")
++
+ #########
+ # Tests #
+ #########
 diff --git a/include/xeus-python/xpythonhome.hpp b/include/xeus-python/xpythonhome.hpp
-index 80074fa..c4e321b 100644
+index 80074fa..6a6cfa9 100644
 --- a/include/xeus-python/xpythonhome.hpp
 +++ b/include/xeus-python/xpythonhome.hpp
-@@ -27,8 +27,8 @@ namespace xpyt
+@@ -15,21 +15,24 @@
+ 
+ #include "pybind11/pybind11.h"
+ 
++#include "xeus_python_config.hpp"
++
+ namespace xpyt
+ {
++    XEUS_PYTHON_API
++    const char* get_pythonhome();
++
+     inline void set_pythonhome()
+     {
+-#ifdef XEUS_PYTHON_HOME
++        static const char* ph = get_pythonhome();
+ #if PY_MAJOR_VERSION == 2
+-        Py_SetPythonHome(XEUS_PYTHON_HOME);
++        Py_SetPythonHome(const_cast<char*>(ph));
+ #else
+         // The same could be achieved with Py_SetPythonHome(T"" XEUS_PYTHON_HOME)
          // but wide string literals are not properly relocated by the conda package
          // manager.
-         static const char* ph = XEUS_PYTHON_HOME;
--        static const std::wstring wstr(ph, ph + std::strlen(ph));;
--        Py_SetPythonHome(const_cast<wchar_t*>(wstr.c_str()));
-+        static std::vector<wchar_t> wstr(ph, ph + std::strlen(ph));
-+        Py_SetPythonHome(wstr.data());
- #endif
+-        static const char* ph = XEUS_PYTHON_HOME;
+         static const std::wstring wstr(ph, ph + std::strlen(ph));;
+         Py_SetPythonHome(const_cast<wchar_t*>(wstr.c_str()));
+-#endif
  #endif
      }
+ }
+diff --git a/src/xpythonhome.cpp b/src/xpythonhome.cpp
+new file mode 100644
+index 0000000..d53045c
+--- /dev/null
++++ b/src/xpythonhome.cpp
+@@ -0,0 +1,28 @@
++/***************************************************************************
++* Copyright (c) 2018, Martin Renou, Johan Mabille, Sylvain Corlay and      *
++* Wolf Vollprecht                                                          *
++*                                                                          *
++* Distributed under the terms of the BSD 3-Clause License.                 *
++*                                                                          *
++* The full license is in the file LICENSE, distributed with this software. *
++****************************************************************************/
++
++#include "xeus-python/xpythonhome.hpp"
++
++namespace xpyt
++{
++    // This functino must not be inlined in the header.
++    // get_pythonhome and set_pythonhome must remain
++    // in different compilation units to avoid compiler
++    // optimization in set_pythonhome that results
++    // in a relocation issue with conda.
++    const char* get_pythonhome()
++    {
++#ifdef XEUS_PYTHONHOME
++        return XEUS_PYTHONHOME;
++#else
++        return "";
++#endif
++    }
++}
++
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index ea279a4..cbe6533 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -77,6 +77,7 @@ find_package(Threads)
+ include_directories(${GTEST_INCLUDE_DIRS} SYSTEM)
+ 
+ set(XEUS_PYTHON_TESTS
++    ../src/xpythonhome.cpp
+     test_xutils.cpp
+     ../src/xutils.cpp
+     test_debugger.cpp
+@@ -106,7 +107,7 @@ set_target_properties(test_xeus_python PROPERTIES
+ 
+ include_directories(${PYTHON_INCLUDE_DIRS})
+ target_link_libraries(test_xeus_python ${PYTHON_LIBRARIES} xeus ${GTEST_BOTH_LIBRARIES} Threads::Threads)
+-target_compile_definitions(test_xeus_python PRIVATE XEUS_PYTHON_HOME="${PYTHON_PREFIX}")
++target_compile_definitions(test_xeus_python PRIVATE XEUS_PYTHONHOME="${PYTHON_PREFIX}")
+ target_include_directories(test_xeus_python PRIVATE ${XEUS_PYTHON_INCLUDE_DIR})
+ 
+ add_custom_target(xtest COMMAND test_xeus_python DEPENDS test_xeus_python)
