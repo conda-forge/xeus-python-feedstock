@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.5.0" %}
-{% set sha256 = "68ee500f54ab5a9ac7222e5f7d0403f41919c9c65e407e79f3b58d14d04a06bd" %}
+{% set version = "0.5.1" %}
+{% set sha256 = "84240569e4e9f996766338df4260ac95352bedada07f60c1e9093e79c0f75104" %}
 
 
 package:
@@ -27,7 +27,7 @@ requirements:
     - cppzmq >=4.3.0,<4.4.0
     - zeromq >=4.2.5,<4.4.0
     - xtl >=0.6.0,<0.7
-    - xeus >=0.23.0,<0.24.0
+    - xeus >=0.23.2,<0.24.0
     - pybind11 >=2.2.4,<3.0
     - nlohmann_json >=3.3.0,<4.0
   run:
