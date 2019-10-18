@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.5.3" %}
-{% set sha256 = "e466d9375408e4160256de845ed27801ca9f3aa180918a6a17f0a5eff83aae5c" %}
+{% set version = "0.6.0" %}
+{% set sha256 = "6840624ab38772dfac652a7f2b101cf22c74c7eaeec81274aed914334d5c97f5" %}
 
 
 package:
@@ -30,6 +30,7 @@ requirements:
     - xeus >=0.23.2,<0.24.0
     - pybind11 >=2.2.4,<3.0
     - nlohmann_json >=3.3.0,<4.0
+    - pybind11_json >=0.2.2,<0.3
   run:
     - python
     - jedi >=0.13.1,<0.14
