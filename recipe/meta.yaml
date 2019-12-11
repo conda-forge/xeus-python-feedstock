@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.6.7" %}
-{% set sha256 = " 2caa64b9052a6ee2103fcdee8d34c9dd5e0f867f4ccf7da7926b3af8ff180dbc" %}
+{% set version = "0.6.8" %}
+{% set sha256 = "9236d4fb299265718ffda22d53b141335bcd2732c4d5707f2433fbba475165b3" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -48,7 +48,8 @@ test:
     - if exist %LIBRARY_INC%\\xeus-python\\xinterpreter.hpp (exit 0) else (exit 1)                       # [win]
     - if exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfig.cmake (exit 0) else (exit 1)         # [win]
     - if exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfigVersion.cmake (exit 0) else (exit 1)  # [win]
-    - if exist %LIBRARY_PREFIX%\\..\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 0) else (exit 1)            # [win]
+    # The kernel spec in installed in the general PREFIX
+    - if exist %PREFIX%\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 0) else (exit 1)            # [win]
 
 about:
   home: http://quantstack.net/xeus-python
