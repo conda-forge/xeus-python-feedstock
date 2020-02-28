@@ -10,9 +10,11 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/QuantStack/xeus-python/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - 0001-adjust-compiler-tuning-for-nonx86.patch  # [linux & (ppc64le | aarch64)]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -21,9 +23,10 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake
+    - make  # [unix]
   host:
     - python
-    - cppzmq >=4.3.0,<4.4.0
+    - cppzmq >=4.3.0,<5
     - zeromq >=4.2.5,<4.4.0
     - xtl >=0.6.8,<0.7
     - xeus >=0.23.2,<0.24.0

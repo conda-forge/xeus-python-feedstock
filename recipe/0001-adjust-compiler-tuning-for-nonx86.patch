@@ -1,0 +1,25 @@
+From ed7b52e692c1018d1ac1664f7f4b10858179c024 Mon Sep 17 00:00:00 2001
+From: Jason Furmanek <furmanek@us.ibm.com>
+Date: Fri, 28 Feb 2020 19:14:42 +0000
+Subject: [PATCH] adjust compiler tuning for nonx86
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6d18e16..a00e670 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -81,7 +81,7 @@ OPTION(DISABLE_ARCH_NATIVE "disable -march=native flag" OFF)
+ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunused-parameter -Wextra -Wreorder")
+     if (DISABLE_ARCH_NATIVE)
+-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mtune=generic")
++        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+     else()
+         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
+     endif()
+-- 
+1.8.3.1
+
