@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.6.11" %}
-{% set sha256 = "b618146924c1100dbc0e3845bb45e7c5f10da1fc895f2559c0233d341491971e" %}
+{% set version = "0.6.12" %}
+{% set sha256 = "d20656f5862a577455bf500f42b4cebc125588f77d8bb6de2edb455ecd0da943" %}
 
 package:
   name: {{ name|lower }}
@@ -26,10 +26,10 @@ requirements:
     - make  # [unix]
   host:
     - python
-    - cppzmq >=4.3.0,<5
+    - cppzmq >=4.4.1,<5
     - zeromq >=4.2.5,<4.4.0
     - xtl >=0.6.8,<0.7
-    - xeus >=0.23.2,<0.24.0
+    - xeus >=0.23.6,<0.24.0
     - pybind11 >=2.2.4,<3.0
     - nlohmann_json >=3.3.0,<4.0
     - pybind11_json >=0.2.2,<0.3
