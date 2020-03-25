@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.6.12" %}
-{% set sha256 = "d20656f5862a577455bf500f42b4cebc125588f77d8bb6de2edb455ecd0da943" %}
+{% set version = "0.6.13" %}
+{% set sha256 = "bb1208ae592d2671bfb777696668111337d41477f773fb12553ec79bc82da1d3" %}
 
 package:
   name: {{ name|lower }}
@@ -10,11 +10,9 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/QuantStack/xeus-python/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  patches:
-    - 0001-adjust-compiler-tuning-for-nonx86.patch  # [linux & (ppc64le | aarch64)]
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -29,7 +27,7 @@ requirements:
     - cppzmq >=4.4.1,<5
     - zeromq >=4.2.5,<4.4.0
     - xtl >=0.6.8,<0.7
-    - xeus >=0.23.6,<0.24.0
+    - xeus >=0.23.9,<0.24.0
     - pybind11 >=2.2.4,<3.0
     - nlohmann_json >=3.3.0,<4.0
     - pybind11_json >=0.2.2,<0.3
