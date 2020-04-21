@@ -35,8 +35,7 @@ requirements:
     - python
     - jedi >=0.15.1,<0.16
     - pygments >=2.3.1,<3.0.0
-    - ptvsd                        # [win and py<38]
-    - ptvsd                        # [unix]
+    - ptvsd >=4.3.2
 
 test:
   commands:
