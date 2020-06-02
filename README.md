@@ -1,7 +1,7 @@
 About xeus-python
 =================
 
-Home: http://quantstack.net/xeus-python
+Home: https://github.com/jupyter-xeus/xeus-python
 
 Package license: BSD-3-Clause
 
@@ -30,7 +30,7 @@ Current build status
       </a>
     </td>
   </tr>
-    
+
   <tr>
     <td>Azure</td>
     <td>

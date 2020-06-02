@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/QuantStack/xeus-python/archive/{{ version }}.tar.gz
+  url: https://github.com/jupyter-xeus/xeus-python/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
@@ -55,14 +55,14 @@ test:
     - if exist %PREFIX%\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 0) else (exit 1)            # [win]
 
 about:
-  home: http://quantstack.net/xeus-python
+  home: https://github.com/jupyter-xeus/xeus-python
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   summary: 'Jupyter kernel for the Python programming language based on xeus'
   description: 'xeus-python is a Jupyter kernel for Python based on the native implementation of the Jupyter protocol xeus.'
   doc_url: http://xeus-python.readthedocs.io
-  dev_url: https://github.com/QuantStack/xeus-python
+  dev_url: https://github.com/jupyter-xeus/xeus-python
 
 extra:
   recipe-maintainers:
