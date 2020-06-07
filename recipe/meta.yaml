@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.7.1" %}
-{% set sha256 = "40afaa5d9a48c4862877bff183262f8032884dade87856bd257c9f28f0e49afe" %}
+{% set version = "0.8.0" %}
+{% set sha256 = "816d9d6cb6897495b1bd36c69bb6d6d4c15295bf3c260c9c213c2ec963bbb426" %}
 
 package:
   name: {{ name|lower }}
@@ -12,8 +12,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  skip: True  # [win and vc<14]
+  number: 0
+  skip: true  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -27,7 +27,7 @@ requirements:
     - cppzmq >=4.4.1,<5
     - zeromq >=4.2.5,<4.4.0
     - xtl >=0.6.8,<0.7
-    - xeus >=0.23.12,<0.24.0
+    - xeus >=0.24.0,<0.25.0
     - pybind11 >=2.2.4,<3.0
     - nlohmann_json >=3.3.0,<4.0
     - pybind11_json >=0.2.2,<0.3
@@ -59,8 +59,8 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: 'Jupyter kernel for the Python programming language based on xeus'
-  description: 'xeus-python is a Jupyter kernel for Python based on the native implementation of the Jupyter protocol xeus.'
+  summary: Jupyter kernel for the Python programming language based on xeus
+  description: xeus-python is a Jupyter kernel for Python based on the native implementation of the Jupyter protocol xeus.
   doc_url: http://xeus-python.readthedocs.io
   dev_url: https://github.com/jupyter-xeus/xeus-python
 
