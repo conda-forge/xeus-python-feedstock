@@ -59,8 +59,8 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: Jupyter kernel for the Python programming language based on xeus
-  description: xeus-python is a Jupyter kernel for Python based on the native implementation of the Jupyter protocol xeus.
+  summary: A Jupyter kernel for the Python programming language based on Xeus
+  description: xeus-python is a Jupyter kernel for the Python programming language based on the Xeus library, a native implementation of the Jupyter protocol.
   doc_url: http://xeus-python.readthedocs.io
   dev_url: https://github.com/jupyter-xeus/xeus-python
 
