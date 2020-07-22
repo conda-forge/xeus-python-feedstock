@@ -5,7 +5,7 @@ Home: https://github.com/jupyter-xeus/xeus-python
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A Jupyter kernel for the Python programming language based on Xeus
 
