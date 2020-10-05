@@ -8,9 +8,13 @@ pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
+  zeromq:
+    max_pin: x.x.x
 python:
 - 3.8.* *_cpython
 target_platform:
 - win-64
 vc:
 - '14'
+zeromq:
+- 4.3.2
