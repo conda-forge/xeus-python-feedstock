@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.8.6" %}
-{% set sha256 = "81772527c2af0ec69f1eb031d1e98ae0558c8f502c8e1a1c869855dd2c2f279a" %}
+{% set version = "0.8.7" %}
+{% set sha256 = "83923e048257af40eec86657001c161b475cd0f78268edc211b791d6813ebf85" %}
 
 package:
   name: {{ name|lower }}
@@ -12,8 +12,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
-  skip: true  # [win and vc<14]
+  number: 0
+  skip: true  # [(win and vc<14) or py36]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -33,10 +33,9 @@ requirements:
     - pybind11_json >=0.2.2,<0.3
   run:
     - python
-    - jedi >=0.15.1,<0.18
+    - jedi >=0.15.1
     - pygments >=2.3.1,<3.0.0
-    - ptvsd                        # [win and py<38]
-    - ptvsd                        # [unix]
+    - debugpy >=1.1.0  # [py>=37]
 
 test:
   commands:
