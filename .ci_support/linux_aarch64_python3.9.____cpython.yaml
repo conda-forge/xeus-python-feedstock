@@ -25,4 +25,4 @@ python:
 target_platform:
 - linux-aarch64
 zeromq:
-- 4.3.2
+- 4.3.3
