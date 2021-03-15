@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(win and vc<14) or py36]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -42,19 +42,19 @@ requirements:
 
 test:
   commands:
-    - test -f ${PREFIX}/bin/xpython                                                                      # [unix]
-    - test -f ${PREFIX}/share/jupyter/kernels/xpython/kernel.json                                        # [unix]
-    - if exist %LIBRARY_BIN%\\xpython.exe (exit 0) else (exit 1)                                         # [win]
-    - if exist %LIBRARY_PREFIX%\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 0) else (exit 1)    # [win]
-    - test -d ${PREFIX}/include/xeus-python                                                              # [unix]
-    - test -f ${PREFIX}/include/xeus-python/xinterpreter.hpp                                             # [unix]
-    - test -f ${PREFIX}/lib/cmake/xeus-python/xeus-pythonConfig.cmake                                    # [unix]
-    - test -f ${PREFIX}/lib/cmake/xeus-python/xeus-pythonConfigVersion.cmake                             # [unix]
-    - if exist %LIBRARY_INC%\\xeus-python\\xinterpreter.hpp (exit 0) else (exit 1)                       # [win]
-    - if exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfig.cmake (exit 0) else (exit 1)         # [win]
-    - if exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfigVersion.cmake (exit 0) else (exit 1)  # [win]
+    - test -f ${PREFIX}/bin/xpython                                                            # [unix]
+    - test -f ${PREFIX}/share/jupyter/kernels/xpython/kernel.json                              # [unix]
+    - if not exist %LIBRARY_BIN%\\xpython.exe (exit 1)                                         # [win]
+    - if not exist %LIBRARY_PREFIX%\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 1)    # [win]
+    - test -d ${PREFIX}/include/xeus-python                                                    # [unix]
+    - test -f ${PREFIX}/include/xeus-python/xinterpreter.hpp                                   # [unix]
+    - test -f ${PREFIX}/lib/cmake/xeus-python/xeus-pythonConfig.cmake                          # [unix]
+    - test -f ${PREFIX}/lib/cmake/xeus-python/xeus-pythonConfigVersion.cmake                   # [unix]
+    - if not exist %LIBRARY_INC%\\xeus-python\\xinterpreter.hpp (exit 1)                       # [win]
+    - if not exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfig.cmake (exit 1)         # [win]
+    - if not exist %LIBRARY_LIB%\\cmake\\xeus-python\\xeus-pythonConfigVersion.cmake (exit 1)  # [win]
     # The kernel spec in installed in the general PREFIX
-    - if exist %PREFIX%\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 0) else (exit 1)            # [win]
+    - if not exist %PREFIX%\\share\\jupyter\\kernels\\xpython\\kernel.json (exit 1)            # [win]
 
 about:
   home: https://github.com/jupyter-xeus/xeus-python
