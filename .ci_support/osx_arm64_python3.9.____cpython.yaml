@@ -21,4 +21,4 @@ python:
 target_platform:
 - osx-arm64
 zeromq:
-- 4.3.3
+- 4.3.4
