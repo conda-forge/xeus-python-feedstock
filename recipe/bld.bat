@@ -18,3 +18,5 @@ REM Copying kernelspec to the general prefix for Jupyter to pick it up.
 
 md %PREFIX%\share\jupyter\kernels\xpython
 xcopy %LIBRARY_PREFIX%\share\jupyter\kernels\xpython %PREFIX%\share\jupyter\kernels\xpython /F /Y
+md %PREFIX%\share\jupyter\kernels\xpython-raw
+xcopy %LIBRARY_PREFIX%\share\jupyter\kernels\xpython-raw %PREFIX%\share\jupyter\kernels\xpython-raw /F /Y
