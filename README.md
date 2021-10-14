@@ -269,4 +269,5 @@ Feedstock Maintainers
 * [@JohanMabille](https://github.com/JohanMabille/)
 * [@SylvainCorlay](https://github.com/SylvainCorlay/)
 * [@martinRenou](https://github.com/martinRenou/)
+* [@trungleduc](https://github.com/trungleduc/)
 
