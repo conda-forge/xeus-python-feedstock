@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.13.2" %}
-{% set sha256 = "5693a90177fbe3c51e4ccb2baea256a4fb8d6fbd2fe757da298dd933bbcdda9c" %}
+{% set version = "0.13.3" %}
+{% set sha256 = "d7dad47246b2644a6af1efa68a35064ff3862d32d3f55ae494c70540efe36145" %}
 
 package:
   name: {{ name|lower }}
@@ -74,3 +74,4 @@ extra:
     - SylvainCorlay
     - JohanMabille
     - martinRenou
+    - trungleduc
