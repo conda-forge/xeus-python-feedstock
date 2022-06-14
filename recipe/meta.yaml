@@ -1,6 +1,6 @@
 {% set name = "xeus-python" %}
-{% set version = "0.13.9" %}
-{% set sha256 = "57695059f562a34326d993acf66f8411746691768bee8f20df18cb3b3adae6e4" %}
+{% set version = "0.14.0" %}
+{% set sha256 = "fe92c696ca25bc144025cd05b78c9069bd400cc2477a1d240adfa24ed828b451" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: true  # [(win and vc<14) or py==36]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -36,7 +36,7 @@ requirements:
     - pybind11_json >=0.2.2,<0.3
   run:
     - python
-    - xeus-python-shell >=0.3.1,<0.4
+    - xeus-python-shell >=0.4.1,<0.5
     - debugpy >=1.1.0,<2.0  # [py>=37]
     - pygments >=2.3.1,<3
 
