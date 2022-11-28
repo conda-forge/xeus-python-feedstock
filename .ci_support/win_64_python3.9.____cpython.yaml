@@ -14,5 +14,3 @@ target_platform:
 - win-64
 vc:
 - '14'
-zeromq:
-- 4.3.4

@@ -18,5 +18,3 @@ python:
 - 3.8.* *_cpython
 target_platform:
 - osx-arm64
-zeromq:
-- 4.3.4
