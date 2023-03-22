@@ -1,11 +1,11 @@
-About xeus-python
-=================
+About xeus-python-feedstock
+===========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/xeus-python-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/jupyter-xeus/xeus-python
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/xeus-python-feedstock/blob/main/LICENSE.txt)
 
 Summary: A Jupyter kernel for the Python programming language based on Xeus
 
