@@ -11,7 +11,7 @@ source:
   sha256: 8cf23dccc8b9f17a663178bed7445280fef4fe95d3b4a9cfd8167a4fddab7035
 
 build:
-  number: 0
+  number: 1
   skip: true  # [(win and vc<14) or py==36]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
@@ -27,7 +27,6 @@ requirements:
     - make  # [unix]
   host:
     - python
-    - cppzmq >=4.4.1,<5
     - xeus-zmq >=3.0.0,<4.0
     - pybind11 >=2.6.1,<3.0
     - nlohmann_json >=3.11.3,<4
