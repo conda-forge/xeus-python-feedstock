@@ -45,12 +45,12 @@ tests:
   - package_contents:
       files:
         exists:
-          - ${{ "Library/" if win }}/bin/xpython${{ ".exe" if win }}
-          - ${{ "Library/" if win }}/share/jupyter/kernels/xpython/kernel.json
-          - ${{ "library/" if win }}/share/jupyter/kernels/xpython-raw/kernel.json
-          - ${{ "library/" if win }}/include/xeus-python/xinterpreter.hpp
-          - ${{ "library/" if win }}/lib/cmake/xeus-python/xeus-pythonConfig.cmake
-          - ${{ "library/" if win }}/lib/cmake/xeus-python/xeus-pythonConfigVersion.cmake
+          - ${{ "Library/" if win }}bin/xpython${{ ".exe" if win }}
+          - ${{ "Library/" if win }}share/jupyter/kernels/xpython/kernel.json
+          - ${{ "Library/" if win }}share/jupyter/kernels/xpython-raw/kernel.json
+          - ${{ "Library/" if win }}include/xeus-python/xinterpreter.hpp
+          - ${{ "Library/" if win }}lib/cmake/xeus-python/xeus-pythonConfig.cmake
+          - ${{ "Library/" if win }}lib/cmake/xeus-python/xeus-pythonConfigVersion.cmake
 
 about:
   homepage: https://github.com/jupyter-xeus/xeus-python
