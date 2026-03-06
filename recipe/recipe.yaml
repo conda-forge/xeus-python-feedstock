@@ -1,5 +1,5 @@
 context:
-  version: "0.17.8"
+  version: "0.18.0"
   build_number: 0
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/jupyter-xeus/xeus-python/archive/${{ version }}.tar.gz
-  sha256: 0f7681a36dac26af2f275e81a49eee2f2be86c4b4e82cb7770b540d2695bd53d
+  sha256: 5b754a2ac274567451a9f52a10cf8c4e91a2890f86146a8f0d6e2f62332f194b
 
 build:
   number: ${{ build_number }}
@@ -30,7 +30,7 @@ requirements:
         - make
   host:
     - python
-    - xeus-zmq >=3.1.1,<4.0
+    - xeus-zmq >=4.0,<5
     - pybind11 >=2.6.1,<3.0
     - pybind11_json >=0.2.6,<0.3
     - nlohmann_json
