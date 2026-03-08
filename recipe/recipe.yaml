@@ -1,5 +1,5 @@
 context:
-  version: "0.18.0"
+  version: "0.18.1"
   build_number: 0
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/jupyter-xeus/xeus-python/archive/${{ version }}.tar.gz
-  sha256: 5b754a2ac274567451a9f52a10cf8c4e91a2890f86146a8f0d6e2f62332f194b
+  sha256: 4e270ed318a851df34c5c58fdf3408a7cec97daf46e0c75bc75cfba2ffd2ddea
 
 build:
   number: ${{ build_number }}
