@@ -1,5 +1,5 @@
 context:
-  version: "0.18.3"
+  version: "0.19.0"
   build_number: 0
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/jupyter-xeus/xeus-python/archive/${{ version }}.tar.gz
-  sha256: a2e275e572259da981362423edd13d6c34aacb87c8706ac4b97a153d0f32c422
+  sha256: 9f85288bbfea0b9087bab57c1d8d827ed0bf0323e63b94af507990c7040cad01
 
 build:
   number: ${{ build_number }}
@@ -37,7 +37,7 @@ requirements:
     - nlohmann_json-abi
   run:
     - python
-    - xeus-python-shell >=0.6.3,<0.7
+    - xeus-python-shell >=0.7.0,<0.8
     - debugpy >=1.1.0,<2.0
     - pygments >=2.3.1,<3
 
