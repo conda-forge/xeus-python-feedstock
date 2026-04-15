@@ -37,7 +37,7 @@ requirements:
     - nlohmann_json-abi
   run:
     - python
-    - xeus-python-shell >=0.6.3,<0.7
+    - xeus-python-shell >=0.7.0,<0.8
     - debugpy >=1.1.0,<2.0
     - pygments >=2.3.1,<3
 
