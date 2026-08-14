@@ -1,6 +1,6 @@
 context:
   version: "0.19.0"
-  build_number: 2
+  build_number: 3
 
 package:
   name: xeus-python
